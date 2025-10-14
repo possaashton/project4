@@ -1,0 +1,28 @@
+{
+  "UserAuthorization": [
+        {
+        "AuthorizationID": "Finance User",
+        "Name": "Finance User"
+        },
+        {
+        "AuthorizationID": "Financial Reporting with Period Access",
+        "Name": "Financial Reporting with Period Access"
+        },
+        {
+        "AuthorizationID": "Accounts Payable",
+        "Name": "Accounts Payable"
+        },
+        {
+        "AuthorizationID": "Commercial User",
+        "Name": "Commercial User"
+        },
+        {
+        "AuthorizationID": "Procurement User",
+        "Name": "Procurement User"
+        },
+        {
+        "AuthorizationID": "Asset Management User",
+        "Name": "Asset Management User"
+        }
+    ]
+}

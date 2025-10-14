@@ -1,0 +1,184 @@
+{
+  "SAPB1DB": [
+    {
+      "ProductID": "SBODemoGB",
+      "Name": "SBODemoGB"
+    },
+    {
+      "ProductID": "SBODemoUS",
+      "Name": "SBODemoUS"
+    },
+    {
+      "ProductID": "CONSOL_LVL_01_ENG",
+      "Name": "CONSOL_LVL_01_ENG"
+    },
+    {
+      "ProductID": "CONSOL_BASE",
+      "Name": "CONSOL_BASE"
+    },
+    {
+      "ProductID": "CONSOL_LVL_02_GRP",
+      "Name": "CONSOL_LVL_02_GRP"
+    },
+    {
+      "ProductID": "CONSOL_LVL_03_BID",
+      "Name": "CONSOL_LVL_03_BID"
+    },
+    {
+      "ProductID": "CONSOL_LVL_04_HLD",
+      "Name": "CONSOL_LVL_04_HLD"
+    },
+    {
+      "ProductID": "HMV_SPAIN_LIVE",
+      "Name": "HMV_SPAIN_LIVE"
+    },
+    {
+      "ProductID": "AMP_PT_LIVE",
+      "Name": "AMP_PT_LIVE"
+    },
+    {
+      "ProductID": "HMV_BID_LIVE",
+      "Name": "HMV_BID_LIVE"
+    },
+    {
+      "ProductID": "HMV_EDISON_LIVE",
+      "Name": "HMV_EDISON_LIVE"
+    },
+    {
+      "ProductID": "HMV_HOLDCO_LIVE",
+      "Name": "HMV_HOLDCO_LIVE"
+    },
+    {
+      "ProductID": "HMV_MID_LIVE",
+      "Name": "HMV_MID_LIVE"
+    },
+    {
+      "ProductID": "HMV_OAK_LIVE",
+      "Name": "HMV_OAK_LIVE"
+    },
+    {
+      "ProductID": "HMV_TOP_LIVE",
+      "Name": "HMV_TOP_LIVE"
+    },
+    {
+      "ProductID": "HMV_VOLTAGE_LIVE",
+      "Name": "HMV_VOLTAGE_LIVE"
+    },
+    {
+      "ProductID": "IFIS_INS_PT_LIVE",
+      "Name": "IFIS_INS_PT_LIVE"
+    },
+    {
+      "ProductID": "SKAN_APS_DN_LIVE",
+      "Name": "SKAN_APS_DN_LIVE"
+    },
+    {
+      "ProductID": "SKAN_GRP_IE_LIVE",
+      "Name": "SKAN_GRP_IE_LIVE"
+    },
+    {
+      "ProductID": "SKAN_LDA_PT_LIVE",
+      "Name": "SKAN_LDA_PT_LIVE"
+    },
+    {
+      "ProductID": "SKAN_SOC_ES_LIVE",
+      "Name": "SKAN_SOC_ES_LIVE"
+    },
+    {
+      "ProductID": "Z_TEST_HMV_IE_LIVE",
+      "Name": "Z_TEST_HMV_IE_LIVE"
+    },
+    {
+      "ProductID": "HMV_AUT_LIVE",
+      "Name": "HMV_AUT_LIVE"
+    },
+    {
+      "ProductID": "HMV_BE_LIVE",
+      "Name": "HMV_BE_LIVE"
+    },
+    {
+      "ProductID": "HMV_DE_LIVE",
+      "Name": "HMV_DE_LIVE"
+    },
+    {
+      "ProductID": "HMV_DN_LIVE",
+      "Name": "HMV_DN_LIVE"
+    },
+    {
+      "ProductID": "HMV_FN_LIVE",
+      "Name": "HMV_FN_LIVE"
+    },
+    {
+      "ProductID": "HMV_FR_LIVE",
+      "Name": "HMV_FR_LIVE"
+    },
+    {
+      "ProductID": "HMV_HR_LIVE",
+      "Name": "HMV_HR_LIVE"
+    },
+    {
+      "ProductID": "HMV_IDCSL_LIVE",
+      "Name": "HMV_IDCSL_LIVE"
+    },
+    {
+      "ProductID": "HMV_IE_LIVE",
+      "Name": "HMV_IE_LIVE"
+    },
+    {
+      "ProductID": "HMV_IN_LIVE",
+      "Name": "HMV_IN_LIVE"
+    },
+    {
+      "ProductID": "HMV_IT_LIVE",
+      "Name": "HMV_IT_LIVE"
+    },
+    {
+      "ProductID": "HMV_NL_LIVE",
+      "Name": "HMV_NL_LIVE"
+    },
+    {
+      "ProductID": "HMV_NO_LIVE",
+      "Name": "HMV_NO_LIVE"
+    },
+    {
+      "ProductID": "HMV_NOR_LIVE",
+      "Name": "HMV_NOR_LIVE"
+    },
+    {
+      "ProductID": "HMV_SE_LIVE",
+      "Name": "HMV_SE_LIVE"
+    },
+    {
+      "ProductID": "HMV_UK_BRANCH_LIVE",
+      "Name": "HMV_UK_BRANCH_LIVE"
+    },
+    {
+      "ProductID": "HMV_UK_SERV_LIVE",
+      "Name": "HMV_UK_SERV_LIVE"
+    },
+    {
+      "ProductID": "HMV_USA_LIVE",
+      "Name": "HMV_USA_LIVE"
+    },
+    {
+      "ProductID": "HMV_ZA_LIVE",
+      "Name": "HMV_ZA_LIVE"
+    },
+    {
+      "ProductID": "SKAN_AB_SE_LIVE",
+      "Name": "SKAN_AB_SE_LIVE"
+    },
+    {
+      "ProductID": "SKAN_BV_NL_LIVE",
+      "Name": "SKAN_BV_NL_LIVE"
+    },
+    {
+      "ProductID": "SKAN_ENG_IE_LIVE",
+      "Name": "SKAN_ENG_IE_LIVE"
+    },
+    {
+      "ProductID": "SKAN_TEL_IE_LIVE",
+      "Name": "SKAN_TEL_IE_LIVE"
+    }
+  ]
+}
