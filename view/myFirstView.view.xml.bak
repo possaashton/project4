@@ -37,7 +37,7 @@
                               
 
                 <!-- Update Button -->
-                <Button id="btnUpdateUser" text="Update User" press="_onUpdateUser" class="sapUiSmallMarginTop"/>
+                <Button id="btnUpdateUser" text="Update User" press=".onUpdateUser" class="sapUiSmallMarginTop"/>
                 
             </VBox>
         </content>

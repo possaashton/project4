@@ -20,11 +20,10 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "/b1s/v1/",
+        "uri": "https://devsap10:50000/b1s/v1",
         "type": "OData",
         "settings": {
           "annotations": [],
-          "localUri": "localService/mainService/metadata.xml",
           "odataVersion": "2.0"
         }
       },
@@ -55,10 +54,7 @@
     }
   },
   "sap.ui5": {
-	"flexEnabled": true,
-	"config": {
-		"backendURL": "https://devsap10:50000/b1s/v1"
-	},
+    "flexEnabled": true,
     "dependencies": {
       "minUI5Version": "1.140.0",
       "libs": {
