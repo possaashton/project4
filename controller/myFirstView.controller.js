@@ -14,13 +14,15 @@ sap.ui.define([
 				codebox.setSelectedKeys("SBODemoGB");
 			var codebox1 = this.byId("mcbAuthorization");
 				codebox1.setSelectedKeys(["Finance User","Accounts Payable"]);	
-				
+			/**For testing**/
+			const oLogModel = new sap.ui.model.json.JSONModel([]);
+			this.getView().setModel(oLogModel, "logModel");			
 			
 			sap.m.MessageToast.show('Welcome to SAP UI5');
         },
 		
         _onUpdateUser: async function () {
-			
+					
 			const bValid = this._frmValidation();
 			if (!bValid) return;		
 			
@@ -30,6 +32,7 @@ sap.ui.define([
 				const aSelectedDBs = this.byId("mcbDBSelector").getSelectedKeys();
 						
 				for (const dbName of aSelectedDBs) {
+					this._addLog("Start of Program for User Code " + this.byId("ipUserCode").getValue());
 					const loginPayload = {
 						CompanyDB: dbName,
 						UserName: sUserName,
@@ -38,11 +41,20 @@ sap.ui.define([
 		
 					// 1. Login & get session for this DB
 					const sessionId = await this._login(loginPayload);
-					if (!sessionId) continue;
-		
+					if (!sessionId) {
+						this._addLog("Error connecting to " + dbName);
+						await this._logout();
+						this._addLog("End of Program for User " + this.byId("ipUserCode").getValue() + " in Database " + dbName);
+						continue;					
+					}
 					// 2. Validate user exists in this DB
 					const userData = await this._getUser(sessionId, dbName);
-					if (!userData) continue;
+					if (!userData){
+						this._addLog("User Code " + this.byId("ipUserCode").getValue() + " not found in Database " + dbName);
+						await this._logout();
+						this._addLog("End of Program for User " + this.byId("ipUserCode").getValue() + " in Database " + dbName);
+						continue;
+					} 
 		
 					// 3. Get user Groups from this DB
 					let aSAPUserGroups = await this._getUserGroups(dbName);
@@ -54,72 +66,35 @@ sap.ui.define([
 						await this._assignBoyumLicense(sessionId, userData, dbName);
 					}
 					
-					sap.m.MessageToast.show(`User updated in ${dbName}`);
+					//sap.m.MessageToast.show(`User updated in ${dbName}`);
 										
 					
 					// Logout from the current DB session
 					await this._logout();
-					
+					this._addLog("End of Program for User " + this.byId("ipUserCode").getValue() + " in Database " + dbName);
 				}
 			} catch (err) {
 				console.error(err);
+				this._addLog("Error connecting to " + dbName + "Error Message: " + err.message);
 				sap.m.MessageToast.show("Error: " + err.message);
 			}		
 			
 		},
 		
-		_assignBoyumLicense: async function(ipSessionId	, ipUserData, ipDbName){
-			
-			try{
-				const userCode = this.byId("ipUserCode").getValue();
-				let aUrlData = this._getUrlData();
-				const oComponent  = aUrlData[0],
-					  oDataSource = aUrlData[1],
-					  sBaseUrl    = aUrlData[2];
-					  
-				const res = await fetch(`${sBaseUrl}/U_BOY_SBO_LICASSN`, {
-					method: "PATCH",
-					credentials: "include",
-					headers:{"Content-Type" : "application/json"},
-					body: JSON.stingigy({Code: "FromUI5"  , U_BOY_ID: "BOY_USABILITY", U_BOY_USR: userCode})
-				});
-				
-			}
-			catch(err){
-				
-			}
+		_onClearLogs : function(){
+			this.getView().getModel("logModel").setData([]);
+		},
+		
+		_onResetData: function(){
+			this.byId("ipUserCode").setValue("");
+			this.byId("ipUserName").setValue("");
+			this.byId("mcbDBSelector").setSelectedKeys([]);
+			this.byId("mcbAuthorization").setSelectedKeys([]);
+			this.byId("chkBoyumLicense").setSelected(false);
 			
 		},
 		
-		_getUserGroups: async function(dbName){
-			
-			let aUrlData = this._getUrlData();
-				const oComponent  = aUrlData[0],
-					  oDataSource = aUrlData[1],
-					  sBaseUrl    = aUrlData[2];
-					  
-			const res = await fetch(`${sBaseUrl}/UserGroups`, {
-				method: "GET",
-				credentials: "include",
-				headers: {"Content-Type": "application/json"}
-			});
-			
-			if (!res.ok){
-				sap.m.MessageToast.show(`UserGroup Lookup failed in ${dbName}`);
-				return null;
-			}
-			
-			const oData = await res.json();
-			if(!oData.value || oData.value.length === 0){
-				sap.m.MessageToast.show(`Authorization Groups not found in &{dbName}`);
-				return null;
-			}
-			
-			return  oData.value;
-			
-		},
-
-        _frmValidation: function () {
+		_frmValidation: function () {
 			
             if (this.byId("ipUserCode").getValue() === '' ||
                 this.byId("ipUserName").getValue() === '') {
@@ -144,8 +119,8 @@ sap.ui.define([
 			 return[oComponent, oDataSource, sBaseUrl];
 			 
 		},
-
-        _login: async function (payload) {
+		
+		_login: async function (payload) {
 			
 			try {
 				
@@ -207,7 +182,7 @@ sap.ui.define([
 				return null;
 			}
 		},
-
+		
 		_getUser: async function (sessionId, dbName) {
 			
 			const userCode = this.byId("ipUserCode").getValue();
@@ -238,6 +213,34 @@ sap.ui.define([
 			
 		},
 		
+		_getUserGroups: async function(dbName){
+			
+			let aUrlData = this._getUrlData();
+				const oComponent  = aUrlData[0],
+					  oDataSource = aUrlData[1],
+					  sBaseUrl    = aUrlData[2];
+					  
+			const res = await fetch(`${sBaseUrl}/UserGroups`, {
+				method: "GET",
+				credentials: "include",
+				headers: {"Content-Type": "application/json"}
+			});
+			
+			if (!res.ok){
+				sap.m.MessageToast.show(`UserGroup Lookup failed in ${dbName}`);
+				return null;
+			}
+			
+			const oData = await res.json();
+			if(!oData.value || oData.value.length === 0){
+				sap.m.MessageToast.show(`Authorization Groups not found in &{dbName}`);
+				return null;
+			}
+			
+			return  oData.value;
+			
+		},	
+
 		_updateUser: async function (sessionId, userData, dbName, aSAPUserGroups) {
 			
 			const internalKey = userData.InternalKey;
@@ -247,15 +250,6 @@ sap.ui.define([
 			const oComponent  = aUrlData[0],
 				  oDataSource = aUrlData[1],
 				  sBaseUrl    = aUrlData[2];
-			
-			/** This was a working code
-			const res = await fetch(`${sBaseUrl}/Users(${internalKey})`, {
-				method: "PATCH",
-				credentials: "include", // allows cookies
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ UserName: newUserName })
-			});
-			**/	
 			
 			const aMcbAuthorization = this.byId("mcbAuthorization").getSelectedKeys();
 			 
@@ -340,8 +334,93 @@ sap.ui.define([
 			});
 			
 			if (!res.ok) {
+				this._addLog("Error updating UserCode " + this.byId("ipUserCode").getValue() + " in Database " + dbName);
 				throw new Error(`User update failed in DB ${dbName}`);
+			}else{
+				sap.m.MessageToast.show(`User updated in ${dbName}`);
+				this._addLog(" Authorization and UserName updated for UserCode " + this.byId("ipUserCode").getValue() +  "  in Database " + dbName);
 			}
+		},
+		
+		_assignBoyumLicense: async function(ipSessionId	, ipUserData, ipDbName){
+			
+			try {
+				const userCode = this.byId("ipUserCode").getValue();
+				let sCode = crypto.randomUUID();
+		
+				// Get base Service Layer URL from manifest
+				let [oComponent, oDataSource, sBaseUrl] = this._getUrlData();
+		
+				// Create payload for Boyum License assignment
+				const payload = {
+					Code: sCode,      
+					Name: sCode,
+					U_BOY_ID: "BOY_USABILITY",
+					U_BOY_USR: userCode
+				};
+				
+				const resGet = await fetch(`${sBaseUrl}/U_BOY_SBO_LICASSN`, {
+					method: "GET",
+					credentials: "include",
+					headers: { "Content-Type": "application/json" }
+				});
+				
+				if(!resGet.ok){
+					const msg = await resGet.text();
+					sap.m.MessageBox.error(`Boyum license assignment failed: ${msg}`);
+					this._addLog("Boyum License Assignemtn Fetch failed, Error Message: " + msg);
+					return;
+				}
+				
+				const oDataBoyLicassn = await resGet.json();
+				let bFlag = false;
+				for(const key of oDataBoyLicassn.value ){
+					
+					//console.log(key.oDataBoyLicassn.value);
+					if(key.U_BOY_USR === userCode){						
+						bFlag = true;
+						break;						
+					}					
+				}
+				if (bFlag === true) {
+					this._addLog("Boyum license already assigned to user " + userCode + " in Database " + ipDbName );
+				} 
+				else{	
+					const res = await fetch(`${sBaseUrl}/U_BOY_SBO_LICASSN`, {
+						method: "POST",
+						credentials: "include",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify(payload)
+					});
+			
+					if (!res.ok) {
+						const msg = await res.text();
+						sap.m.MessageBox.error(`Boyum license assignment failed: ${msg}`);
+						this._addLog("Boyum License Assignemtn failed for " + userCode + " in Databse " + ipDbName + "Error Message: " + msg);
+						return;
+					}
+					this._addLog("Boyum license assigned to" + userCode + "in " + ipDbName);
+					sap.m.MessageToast.show(`Boyum license assigned to ${userCode} in ${ipDbName}`);
+				}
+			} catch (err) {
+				console.error(err);
+				this._addLog("Error assigning Boyum license, Error Message  " + err.message);
+				sap.m.MessageBox.error(`Error assigning Boyum license: ${err.message}`);
+			}
+					
+		},
+				
+		_addLog: function (message) {
+			const oLogModel = this.getView().getModel("logModel");
+			const aLogs = oLogModel.getData();
+		
+			const timestamp = new Date().toLocaleString();
+			aLogs.push({
+				Timestamp: timestamp,
+				Message: message
+			});
+		
+			oLogModel.setData(aLogs);
 		}
     });
 });

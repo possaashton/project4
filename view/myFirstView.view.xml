@@ -35,10 +35,38 @@
                 <!-- Boyum License Checkbox -->
                 <CheckBox id="chkBoyumLicense" text="Assign Boyum License"/>
                               
+			
+				<HBox justifyContent="Center" alignItems="Center" class="sapUiSmallMarginTop">
+					<Button text="Submit" press="_onUpdateUser" type="Emphasized" />
+					<Button text="Clear Logs" press="_onClearLogs" />
+					<Button text="Reset Form" press="_onResetData" />
+				</HBox>
+			
+                <Table
+					id="tblLogs"				
+					items="{logModel>/}"
+					inset="false"
+					width="100%"
+					mode="None">
 
-                <!-- Update Button -->
-                <Button id="btnUpdateUser" text="Update User" press="_onUpdateUser" class="sapUiSmallMarginTop"/>
-                
+					<columns>
+						<Column>
+							<Text text="Timestamp" />
+						</Column>
+						<Column>
+							<Text text="Message" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{logModel>Timestamp}" />
+								<Text text="{logModel>Message}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				
             </VBox>
         </content>
     </Page>
