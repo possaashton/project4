@@ -1,11 +1,13 @@
 {
   "_version": "1.76.0",
   "sap.app": {
-    "id": "project4",
+    "id": "project2",
     "type": "application",
     "i18n": {
       "bundleUrl": "i18n/i18n.properties",
-      "supportedLocales": [""]
+      "supportedLocales": [
+        ""
+      ]
     },
     "applicationVersion": {
       "version": "0.0.1"
@@ -20,10 +22,11 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "https://devsap10:50000/b1s/v1/",
+        "uri": "/b1s/v1/",
         "type": "OData",
         "settings": {
           "annotations": [],
+          "localUri": "localService/mainService/metadata.xml",
           "odataVersion": "2.0"
         }
       },
@@ -70,8 +73,10 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "project4.i18n.i18n",
-          "supportedLocales": [""],
+          "bundleName": "project2.i18n.i18n",
+          "supportedLocales": [
+            ""
+          ],
           "fallbackLocale": ""
         }
       },
@@ -106,28 +111,28 @@
         "transition": "slide",
         "type": "View",
         "viewType": "XML",
-        "path": "project4.view",
+        "path": "project2.view",
         "async": true,
-        "viewPath": "project4.view"
+        "viewPath": "project2.view"
       },
       "routes": [
         {
-          "name": "RoutemyFirstView",
+          "name": "RouteIIS_View1",
           "pattern": ":?query:",
           "target": [
-            "TargetmyFirstView"
+            "TargetIIS_View1"
           ]
         }
       ],
       "targets": {
-        "TargetmyFirstView": {
-          "id": "myFirstView",
-          "name": "myFirstView"
+        "TargetIIS_View1": {
+          "id": "IIS_View1",
+          "name": "IIS_View1"
         }
       }
     },
     "rootView": {
-      "viewName": "project4.view.App",
+      "viewName": "project2.view.App",
       "type": "XML",
       "id": "App",
       "async": true

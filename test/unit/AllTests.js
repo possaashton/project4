@@ -1,5 +1,2 @@
-sap.ui.define([
-	"project4/test/unit/controller/myFirstView.controller"
-], function () {
-	"use strict";
-});
+sap.ui.define(["project2/test/unit/controller/IIS_View1.controller"],function(){"use strict"});
+//# sourceMappingURL=AllTests.js.map

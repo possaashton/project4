@@ -1,26 +1,2 @@
-sap.ui.define([
-    "sap/ui/core/UIComponent",
-    "project4/model/models"
-], (UIComponent, models) => {
-    "use strict";
-
-    return UIComponent.extend("project4.Component", {
-        metadata: {
-            manifest: "json",
-            interfaces: [
-                "sap.ui.core.IAsyncContentCreation"
-            ]
-        },
-
-        init() {
-            // call the base component's init function
-            UIComponent.prototype.init.apply(this, arguments);
-
-            // set the device model
-            this.setModel(models.createDeviceModel(), "device");
-
-            // enable routing
-            this.getRouter().initialize();
-        }
-    });
-});
+sap.ui.define(["sap/ui/core/UIComponent","project2/model/models"],(e,t)=>{"use strict";return e.extend("project2.Component",{metadata:{manifest:"json",interfaces:["sap.ui.core.IAsyncContentCreation"]},init(){e.prototype.init.apply(this,arguments);this.setModel(t.createDeviceModel(),"device");this.getRouter().initialize()}})});
+//# sourceMappingURL=Component.js.map

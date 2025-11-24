@@ -1,0 +1,2 @@
+sap.ui.define(["project2/controller/IIS_View1.controller"],function(t){"use strict";QUnit.module("IIS_View1 Controller");QUnit.test("I should test the IIS_View1 controller",function(e){var o=new t;o.onInit();e.ok(o)})});
+//# sourceMappingURL=IIS_View1.controller.js.map

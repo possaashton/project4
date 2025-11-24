@@ -1,7 +1,10 @@
-<mvc:View controllerName="project4.controller.App"
+<mvc:View controllerName="project2.controller.App"
     displayBlock="true"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
     <App id="app">
+    <pages>
+            <mvc:XMLView viewName="project2.view.IIS_View1" id="IISView"/>
+    </pages>
     </App>
 </mvc:View>

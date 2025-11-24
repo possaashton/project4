@@ -1,16 +1,2 @@
-/* global window, parent, location */
-
-// eslint-disable-next-line fiori-custom/sap-no-global-define
-	
-window.suite = function() {
-	"use strict";
-
-	// eslint-disable-next-line
-	var oSuite = new parent.jsUnitTestSuite(),
-
-	sContextPath = location.pathname.substring(0, location.pathname.lastIndexOf('/') + 1);
-	oSuite.addTestPage(sContextPath + 'unit/unitTests.qunit.html');
-	oSuite.addTestPage(sContextPath + 'integration/opaTests.qunit.html');
-
-	return oSuite;
-};
+window.suite=function(){"use strict";var t=new parent.jsUnitTestSuite,n=location.pathname.substring(0,location.pathname.lastIndexOf("/")+1);t.addTestPage(n+"unit/unitTests.qunit.html");t.addTestPage(n+"integration/opaTests.qunit.html");return t};
+//# sourceMappingURL=testsuite.qunit.js.map

@@ -1,23 +1,2 @@
-/*global QUnit*/
-
-sap.ui.define([
-	"sap/ui/test/opaQunit",
-	"./pages/App",
-	"./pages/myFirstView"
-], function (opaTest) {
-	"use strict";
-
-	QUnit.module("Navigation Journey");
-
-	opaTest("Should see the initial page of the app", function (Given, When, Then) {
-		// Arrangements
-		Given.iStartMyApp();
-
-		// Assertions
-		Then.onTheAppPage.iShouldSeeTheApp();
-      	Then.onTheViewPage.iShouldSeeThePageView();
-
-		//Cleanup
-		Then.iTeardownMyApp();
-	});
-});
+sap.ui.define(["sap/ui/test/opaQunit","./pages/App","./pages/IIS_View1"],function(e){"use strict";QUnit.module("Navigation Journey");e("Should see the initial page of the app",function(e,i,p){e.iStartMyApp();p.onTheAppPage.iShouldSeeTheApp();p.onTheViewPage.iShouldSeeThePageView();p.iTeardownMyApp()})});
+//# sourceMappingURL=NavigationJourney.js.map
